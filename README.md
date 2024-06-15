@@ -2,7 +2,8 @@
 
 ## 概要
 
-Node CLI Sample は、Node.js と TypeScript で作成されたコマンドラインツールです。このツールは、以下の機能を提供します。
+このリポジトリには、Node.js で構築された CLI ツールと、Go で構築されたバックエンドサーバーが含まれています。
+CLI ツールは、ログイン、開発サーバーの起動、およびプロジェクトのビルドのコマンドを提供します。バックエンドサーバーは認証を処理します。
 
 - ユーザー認証 (ログイン)
 - 開発サーバーの起動
@@ -13,6 +14,7 @@ Node CLI Sample は、Node.js と TypeScript で作成されたコマンドラ�
 - Node.js
 - TypeScript
 - Commander.js
+- Go
 
 ## インストール
 
@@ -30,10 +32,52 @@ Node CLI Sample は、Node.js と TypeScript で作成されたコマンドラ�
    cd node-cli-sample
    ```
 
-2. 依存関係をインストールします。
+### CLI セットアップ
 
-   ```bash
+1. `cli`ディレクトリに移動:
+
+   ```sh
+   cd cli
+   ```
+
+2. 依存関係をインストール:
+   ```sh
    npm install
+   ```
+
+### サーバーセットアップ
+
+1. `server`ディレクトリに移動:
+
+   ```sh
+   cd server
+   ```
+
+2. Go モジュールを初期化（未初期化の場合）:
+   ```sh
+   go mod tidy
+   ```
+
+## アプリケーションの実行
+
+### サーバーの起動
+
+1. `server`ディレクトリに移動:
+
+   ```sh
+   cd server
+   ```
+
+2. Go サーバーを実行:
+   ```sh
+   go run main.go
+   ```
+
+### CLI の使用
+
+1. 新しいターミナルを開き、`cli`ディレクトリに移動:
+   ```sh
+   cd cli
    ```
 
 ## 使用方法
