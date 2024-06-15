@@ -1,0 +1,29 @@
+{
+  "name": "cli-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "my-cli-tool": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && node dist/index.js build",
+    "dev": "ts-node src/index.ts dev",
+    "login": "ts-node src/index.ts login",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "express": "^4.19.2"
+  }
+}
