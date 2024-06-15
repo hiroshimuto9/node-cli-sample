@@ -1,13 +1,13 @@
 import { Command } from "commander";
-import { checkAuth } from "../utils/auth";
+import { checkAuth, logout } from "../utils/api"; // utils/auth ではなく utils/api から読み込む
 import * as fs from "fs";
 import * as path from "path";
 
 const buildCommand = new Command("build")
   .description("Build the project")
-  .action(() => {
+  .action(async () => {
     try {
-      checkAuth();
+      await checkAuth();
       console.log("Building the project...");
 
       const projectRoot = process.cwd();
@@ -30,9 +30,17 @@ const buildCommand = new Command("build")
       cssFiles.forEach((file) => convertToLiquid(file, outputDir));
 
       console.log("Build completed.");
-    } catch (error) {
-      console.error("Error during build:", error);
+    } catch (error: any) {
+      console.error("Error during build:", error.message || error);
     }
+
+    process.on("SIGINT", async () => {
+      process.exit();
+    });
+
+    process.on("SIGTERM", async () => {
+      process.exit();
+    });
   });
 
 function getFiles(dir: string, ext: string): string[] {
@@ -69,8 +77,11 @@ function convertToLiquid(filePath: string, outputDir: string): void {
 
     fs.writeFileSync(liquidFilePath, content);
     console.log(`Converted ${filePath} to ${liquidFilePath}`);
-  } catch (error) {
-    console.error(`Error converting ${filePath} to liquid:`, error);
+  } catch (error: any) {
+    console.error(
+      `Error converting ${filePath} to liquid:`,
+      error.message || error
+    );
   }
 }
 
